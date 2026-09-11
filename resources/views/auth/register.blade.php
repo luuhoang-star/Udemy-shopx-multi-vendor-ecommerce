@@ -1,0 +1,70 @@
+@extends('frontend.layouts.app')
+
+@section('contents')
+    <x-frontend.breadcrumb :items="[['label' => 'Trang chủ', 'url' => '/'], ['label' => 'Đăng ký']]" />
+
+    <div class="page-content pt-150 pb-140">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 m-auto">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 offset-lg-3">
+                            <div class="login_wrap widget-taber-content background-white">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h2 class="mb-5">Tạo tài khoản mới</h2>
+                                        <p class="mb-30">Đã có tài khoản? <a href="{{ route('login') }}">Đăng nhập</a>
+                                        </p>
+                                    </div>
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
+
+                                        <div class="form-group">
+                                            <input type="text" required="" name="name" placeholder="Họ và tên *"
+                                                value="{{ old('name') }}" />
+                                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" required="" name="email" placeholder="Địa chỉ Email *"
+                                                value="{{ old('email') }}" />
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" name="password" placeholder="Mật khẩu *" />
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" name="password_confirmation"
+                                                placeholder="Xác nhận lại mật khẩu *" />
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                        </div>
+
+                                        <div class="payment_option mb-30">
+                                            <div class="custome-radio">
+                                                <input class="form-check-input" required="" type="radio"
+                                                    name="user_type" id="exampleRadios3" checked="" value="user" />
+                                                <label class="form-check-label" for="exampleRadios3">Tôi là khách hàng mua sắm</label>
+                                            </div>
+                                            <div class="custome-radio">
+                                                <input class="form-check-input" required="" type="radio"
+                                                    name="user_type" id="exampleRadios4" value="vendor" />
+                                                <label class="form-check-label" for="exampleRadios4">Tôi là người bán hàng (Vendor)</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <button type="submit"
+                                                class="btn btn-fill-out btn-block hover-up font-weight-bold"
+                                                name="login">Đăng ký tài khoản</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
